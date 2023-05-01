@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332fe90532cb4414caa6357344b6b13b, type: 3}
   m_Name: CardData_BlueEyeWhiteDragon
   m_EditorClassIdentifier: 
-  _cardName: ...
+  _cardName: Blue Eyes White Dragon
   _cardType: 1
-  _cardAttribute: 0
-  _cardFront: {fileID: 0}
-  _cardBack: {fileID: 0}
+  _cardAttribute: 5
+  _cardFront: {fileID: 21300000, guid: 39529a83b041f294e9ae5259cfdd28aa, type: 3}
+  _cardBack: {fileID: 21300000, guid: 5cdba009f388b684c94ea5d43871993a, type: 3}
   _cardFlipAnimation: {fileID: 0}
   _cardLoseEffect: {fileID: 0}
   _cardWinEffect: {fileID: 0}
