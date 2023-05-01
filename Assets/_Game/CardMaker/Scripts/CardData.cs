@@ -16,17 +16,18 @@ public class CardData : ScriptableObject
 
     [Separator(2)]
     [Header("Visual Data")]
-    [SerializeField][Tooltip("Sprite Will Be displayed on the front of the card.")] private Sprite _cardFront = null;
-    [SerializeField][Tooltip("Sprite Will Be displayed on the back of the card.")] private Sprite _cardBack = null;
-    [SerializeField][Tooltip("Animation that plays when the card flips.")] private Animation _cardFlipAnimation = null;
+    [SerializeField][Tooltip("Sprite Will Be displayed on the front of the card.")] private Material _cardFront = null;
+    [SerializeField][Tooltip("Sprite Will Be displayed on the back of the card.")] private Material _cardBack = null;
+    [SerializeField][Tooltip("Animation that plays when the card flips to front.")] private AnimationClip _cardFrontFlipAnimation = null;
+    [SerializeField][Tooltip("Animation that plays when the card flips to back.")] private AnimationClip _cardBackFlipAnimation = null;
     [SerializeField][Tooltip("Particals that the card produces upon a loss.")] private ParticleSystem _cardLoseEffect = null;
     [SerializeField][Tooltip("Particals that the card produces upon a win.")] private ParticleSystem _cardWinEffect = null;
 
     [Separator(2)]
     [Header("Visual Data")]
-    [SerializeField][Tooltip("Sound that plays when the card flips.")] private AudioClip _cardFlipSound = null;
-    [SerializeField][Tooltip("Sound that plays upon a card win.")] private AudioClip _cardWinSound = null;
-    [SerializeField][Tooltip("Sound that plays upon a card loss.")] private AudioClip _cardLoseSound = null;
+    [SerializeField][Tooltip("Sound that plays when the card flips.")] private AudioSource _cardFlipSound = null;
+    [SerializeField][Tooltip("Sound that plays upon a card win.")] private AudioSource _cardWinSound = null;
+    [SerializeField][Tooltip("Sound that plays upon a card loss.")] private AudioSource _cardLoseSound = null;
 
     [Separator(2)]
     [Header("Combat States")]
@@ -37,12 +38,15 @@ public class CardData : ScriptableObject
     public string Name => _cardName;
     public CardType CardType => _cardType;
     public CardAttribute CardAttribute => _cardAttribute;
-    public Sprite CardFront => _cardFront;
-    public Sprite CardBack => _cardBack;
-    public Animation CardFlipAnimation => _cardFlipAnimation;
-    public AudioClip CardFlipSound => _cardFlipSound;
-    public AudioClip CardWinSound => _cardWinSound;
-    public AudioClip CardLoseSound => _cardLoseSound;
+    public Material CardFront => _cardFront;
+    public Material CardBack => _cardBack;
+    public AnimationClip CardFrontFlipAnimation => _cardFrontFlipAnimation;
+    public AnimationClip CardBackFlipAnimation => _cardBackFlipAnimation;
+    public ParticleSystem CardLossEffect => _cardLoseEffect;
+    public ParticleSystem CardWinEffect => _cardWinEffect;
+    public AudioSource CardFlipSound => _cardFlipSound;
+    public AudioSource CardWinSound => _cardWinSound;
+    public AudioSource CardLoseSound => _cardLoseSound;
     public int AttackPoints => _attackPoints;
     public int DefencePoints => _defencePoints;
     public int Level => _level;

@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 332fe90532cb4414caa6357344b6b13b, type: 3}
+  m_Name: CardData_BlueEyesWhiteDragon
+  m_EditorClassIdentifier: 
+  _cardName: Blue Eyes White Dragon
+  _cardType: 1
+  _cardAttribute: 5
+  _cardFront: {fileID: 2100000, guid: 198eceb194adbb34ab154c0d7ebe12de, type: 2}
+  _cardBack: {fileID: 2100000, guid: f70ed87e54c919c43ba3456a15068d93, type: 2}
+  _cardFrontFlipAnimation: {fileID: 7400000, guid: d0f476a7b24704846b71aa42455cf60a,
+    type: 2}
+  _cardBackFlipAnimation: {fileID: 7400000, guid: fd1b7a35adbefd44aad2069af2d299cd,
+    type: 2}
+  _cardLoseEffect: {fileID: 7610590023413157851, guid: 6e301ca4433f22547bd6ab7f0d2adb42,
+    type: 3}
+  _cardWinEffect: {fileID: 7610590023413157851, guid: 6a445ba681a78a54481e30dde7274832,
+    type: 3}
+  _cardFlipSound: {fileID: 3310805097562507926, guid: 2b478421a774e9a40af314dd982b245e,
+    type: 3}
+  _cardWinSound: {fileID: 3310805097562507926, guid: 032245615c350aa409add2240a25e6aa,
+    type: 3}
+  _cardLoseSound: {fileID: 3310805097562507926, guid: 9a9c641224a95244bbacabbca4c47f1b,
+    type: 3}
+  _attackPoints: 500
+  _defencePoints: 500
+  _level: 1
