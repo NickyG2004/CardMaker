@@ -5,5 +5,5 @@ using UnityEngine;
 public enum CardType
 {
     None = 0,
-    Monster
+    Monster = 1
 }

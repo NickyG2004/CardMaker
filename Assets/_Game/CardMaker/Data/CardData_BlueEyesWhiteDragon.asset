@@ -15,8 +15,8 @@ MonoBehaviour:
   _cardName: Blue Eyes White Dragon
   _cardType: 1
   _cardAttribute: 5
-  _cardFront: {fileID: 2100000, guid: 198eceb194adbb34ab154c0d7ebe12de, type: 2}
-  _cardBack: {fileID: 2100000, guid: f70ed87e54c919c43ba3456a15068d93, type: 2}
+  _cardFront: {fileID: 2800000, guid: 39529a83b041f294e9ae5259cfdd28aa, type: 3}
+  _cardBack: {fileID: 2800000, guid: 5cdba009f388b684c94ea5d43871993a, type: 3}
   _cardFrontFlipAnimation: {fileID: 7400000, guid: d0f476a7b24704846b71aa42455cf60a,
     type: 2}
   _cardBackFlipAnimation: {fileID: 7400000, guid: fd1b7a35adbefd44aad2069af2d299cd,
@@ -34,3 +34,4 @@ MonoBehaviour:
   _attackPoints: 500
   _defencePoints: 500
   _level: 1
+  _showStats: 1
