@@ -31,7 +31,10 @@ MonoBehaviour:
     type: 3}
   _cardLoseSound: {fileID: 3310805097562507926, guid: 9a9c641224a95244bbacabbca4c47f1b,
     type: 3}
-  _attackPoints: 581
-  _defencePoints: 3979
-  _level: 10
+  _attackPoints: 2500
+  _defencePoints: 3500
+  _level: 2
   _showStats: 1
+  _isPositive: 1
+  _isNegitive: 0
+  _modValue: 1000

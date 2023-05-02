@@ -26,6 +26,9 @@ public class CardDataEditor : Editor
     private SerializedProperty _defencePoints;
     private SerializedProperty _level;
     private SerializedProperty _showStats;
+    private SerializedProperty _isPositive;
+    private SerializedProperty _isNegitive;
+    private SerializedProperty _modValue;
 
     private void OnEnable()
     {
@@ -45,8 +48,11 @@ public class CardDataEditor : Editor
         _defencePoints = serializedObject.FindProperty("_defencePoints");
         _level = serializedObject.FindProperty("_level");
         _showStats = serializedObject.FindProperty("_showStats");
+        _isPositive = serializedObject.FindProperty("_isPositive");
+        _isNegitive = serializedObject.FindProperty("_isNegitive");
+        _modValue = serializedObject.FindProperty("_modValue");
 
-    }
+}
 
     public override void OnInspectorGUI()
     {
@@ -165,16 +171,26 @@ public class CardDataEditor : Editor
             EditorGUI.indentLevel++;
 
             EditorGUILayout.PropertyField(_attackPoints, new GUIContent("Attack Points"));
+            if (_attackPoints.intValue % 100 != 0)
+            {
+                _attackPoints.intValue = RoundValue(_attackPoints.intValue);
+            }
             if (_attackPoints.intValue < 0)
             {
                 EditorGUILayout.HelpBox("Warrning: Attack point can not be a negitive value, Plase enter a positive number!", MessageType.Error);
             }
 
             EditorGUILayout.PropertyField(_defencePoints, new GUIContent("Defence Points"));
+            if (_defencePoints.intValue % 100 != 0)
+            {
+                _defencePoints.intValue = RoundValue(_defencePoints.intValue);
+            }
             if (_defencePoints.intValue < 0)
             {
                 EditorGUILayout.HelpBox("Warrning: Defence point can not be a negitive value, Plase enter a positive number!", MessageType.Error);
             }
+
+            EditorGUILayout.HelpBox("Note: Inputed values will be rounded down to nearest hundreds place.", MessageType.Info);
 
             EditorGUILayout.PropertyField(_level, new GUIContent("Card Level"));
 
@@ -205,13 +221,111 @@ public class CardDataEditor : Editor
             }
         }
 
+        if (_cardType.intValue == 2)
+        {
+            EditorGUILayout.LabelField("Card Visual Data", EditorStyles.boldLabel);
+            EditorGUI.indentLevel++;
+
+            EditorGUILayout.PropertyField(_cardFront, new GUIContent("Card Front Texture"));
+            if (_cardFront == null)
+            {
+                EditorGUILayout.HelpBox("Warrning: No card front texture specified. Please Input a Texture!", MessageType.Error);
+            }
+
+            EditorGUILayout.PropertyField(_cardBack, new GUIContent("Card Back Texture"));
+            if (_cardBack == null)
+            {
+                EditorGUILayout.HelpBox("Warrning: No card back texture specified. Please Input a Texture!", MessageType.Error);
+            }
+
+            EditorGUILayout.PropertyField(_cardFrontFlipAnimation, new GUIContent("Card flip to front Animation"));
+            if (_cardFrontFlipAnimation == null)
+            {
+                EditorGUILayout.HelpBox("Warrning: No card flip to front animation specified. Please Input an Animation Clip!", MessageType.Error);
+            }
+
+            EditorGUILayout.PropertyField(_cardBackFlipAnimation, new GUIContent("Card flip to back Animation"));
+            if (_cardBackFlipAnimation == null)
+            {
+                EditorGUILayout.HelpBox("Warrning: No card flip to back animation specified. Please Input an Animation Clip!", MessageType.Error);
+            }
+
+            EditorGUI.indentLevel--;
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Card Audio Data", EditorStyles.boldLabel);
+            EditorGUI.indentLevel++;
+
+            EditorGUILayout.PropertyField(_cardFlipSound, new GUIContent("Card Flip Sound"));
+            if (_cardFlipSound == null)
+            {
+                EditorGUILayout.HelpBox("Warrning: No card flip sound specified. Please Input an Audio Source!", MessageType.Error);
+            }
+
+            EditorGUI.indentLevel--;
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Card Modifier Stats", EditorStyles.boldLabel);
+            EditorGUI.indentLevel++;
+            EditorGUIUtility.labelWidth = 110;
+            EditorGUILayout.PropertyField(_isPositive, new GUIContent("Is Buff Value"));
+            EditorGUILayout.PropertyField(_isNegitive, new GUIContent("Is Debuff Value"));
+            if (_isNegitive.boolValue == false && _isPositive.boolValue == false)
+            {
+                EditorGUILayout.HelpBox("Warrning: No Modifier Direction selected, Please check a Box", MessageType.Error);
+            }
+
+            if (_isNegitive.boolValue == false || _isPositive.boolValue == false)
+            {
+                EditorGUILayout.HelpBox("Note: No only one box may be checked at a time.", MessageType.Info);
+            }
+
+            if (_isNegitive.boolValue == true && _isPositive.boolValue == true)
+            {
+                _isNegitive.boolValue = false;
+                _isPositive.boolValue = false;
+            }
+
+            EditorGUIUtility.labelWidth = 0;
+            EditorGUILayout.PropertyField(_modValue, new GUIContent("Modifier Magnitude"));
+            if (GUILayout.Button("Random Mod Magnitude"))
+            {
+                RandomizeMod();
+            }
+            if (_modValue.intValue < 0)
+            {
+                EditorGUILayout.HelpBox("Warrning: Modifier Magnitude can not be a negitive value, Plase enter a positive number!", MessageType.Error);
+            }
+            if (_modValue.intValue == 0)
+            {
+                EditorGUILayout.HelpBox("Warrning: Modifier Magnitude can not be a Equal to Zero, Plase enter a value greater then zero!", MessageType.Error);
+            }
+
+            EditorGUI.indentLevel--;
+        }
+
         serializedObject.ApplyModifiedProperties();
     }
 
     void RandomizeStats()
     {
-        _attackPoints.intValue = UnityEngine.Random.Range(0, 4000);
-        _defencePoints.intValue = UnityEngine.Random.Range(0, 4000);
+        _attackPoints.intValue = UnityEngine.Random.Range(0, 4099);
+        _attackPoints.intValue = RoundValue(_attackPoints.intValue);
+
+        _defencePoints.intValue = UnityEngine.Random.Range(0, 4099);
+        _defencePoints.intValue = RoundValue(_defencePoints.intValue);
+
         _level.intValue = UnityEngine.Random.Range(1, 10);
+    }
+
+    void RandomizeMod()
+    {
+        _modValue.intValue = UnityEngine.Random.Range(100, 1099);
+        _modValue.intValue = RoundValue(_modValue.intValue);
+    }
+
+    int RoundValue(int value)
+    {
+        value /= 100;
+        value *= 100;
+        return value;
     }
 }

@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "CardData_", menuName = "UnitData/Monster")]
+[CreateAssetMenu(fileName = "CardData_", menuName = "CardData/Monster")]
 
 public class CardData : ScriptableObject
 {
@@ -34,6 +35,11 @@ public class CardData : ScriptableObject
     [Separator(2)]
     [SerializeField][Tooltip("When Checked will display card stats.")] private bool _showStats = true;
 
+    [Separator(2)]
+    [SerializeField][Tooltip("")] private bool _isPositive = true;
+    [SerializeField][Tooltip("")] private bool _isNegitive = false;
+    [SerializeField][Tooltip("")] private int _modValue = 500;
+
     public string Name => _cardName;
     public CardType CardType => _cardType;
     public CardAttribute CardAttribute => _cardAttribute;
@@ -50,5 +56,7 @@ public class CardData : ScriptableObject
     public int DefencePoints => _defencePoints;
     public int Level => _level;
     public bool ShowStats => _showStats;
-
+    public bool IsPositive => _isPositive;
+    public bool IsNegitive => _isNegitive;
+    public int ModValue => _modValue;
 }
