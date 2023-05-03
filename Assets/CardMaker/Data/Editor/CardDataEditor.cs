@@ -16,8 +16,8 @@ public class CardDataEditor : Editor
     private SerializedProperty _cardAttribute;
     private SerializedProperty _cardFront;
     private SerializedProperty _cardBack;
-    private SerializedProperty _cardFrontFlipAnimation;
-    private SerializedProperty _cardBackFlipAnimation;
+    // private SerializedProperty _cardFrontFlipAnimation;
+    // private SerializedProperty _cardBackFlipAnimation;
     private SerializedProperty _cardLoseEffect;
     private SerializedProperty _cardWinEffect;
     private SerializedProperty _cardFlipSound;
@@ -38,8 +38,8 @@ public class CardDataEditor : Editor
         _cardAttribute = serializedObject.FindProperty("_cardAttribute");
         _cardFront = serializedObject.FindProperty("_cardFront");
         _cardBack = serializedObject.FindProperty("_cardBack");
-        _cardFrontFlipAnimation = serializedObject.FindProperty("_cardFrontFlipAnimation");
-        _cardBackFlipAnimation = serializedObject.FindProperty("_cardBackFlipAnimation");
+        // _cardFrontFlipAnimation = serializedObject.FindProperty("_cardFrontFlipAnimation");
+        // _cardBackFlipAnimation = serializedObject.FindProperty("_cardBackFlipAnimation");
         _cardLoseEffect = serializedObject.FindProperty("_cardLoseEffect");
         _cardWinEffect = serializedObject.FindProperty("_cardWinEffect");
         _cardFlipSound = serializedObject.FindProperty("_cardFlipSound");
@@ -119,17 +119,17 @@ public class CardDataEditor : Editor
                 EditorGUILayout.HelpBox("Warrning: No card back texture specified. Please Input a Texture!", MessageType.Error);
             }
 
-            EditorGUILayout.PropertyField(_cardFrontFlipAnimation, new GUIContent("Card flip to front Animation"));
-            if (_cardFrontFlipAnimation == null)
-            {
-                EditorGUILayout.HelpBox("Warrning: No card flip to front animation specified. Please Input an Animation Clip!", MessageType.Error);
-            }
+             //EditorGUILayout.PropertyField(_cardFrontFlipAnimation, new GUIContent("Card flip to front Animation"));
+             //if (_cardFrontFlipAnimation == null)
+            // {
+            //     EditorGUILayout.HelpBox("Warrning: No card flip to front animation specified. Please Input an Animation Clip!", MessageType.Error);
+            // }
 
-            EditorGUILayout.PropertyField(_cardBackFlipAnimation, new GUIContent("Card flip to back Animation"));
-            if (_cardBackFlipAnimation == null)
-            {
-                EditorGUILayout.HelpBox("Warrning: No card flip to back animation specified. Please Input an Animation Clip!", MessageType.Error);
-            }
+            // EditorGUILayout.PropertyField(_cardBackFlipAnimation, new GUIContent("Card flip to back Animation"));
+            // if (_cardBackFlipAnimation == null)
+            // {
+              //   EditorGUILayout.HelpBox("Warrning: No card flip to back animation specified. Please Input an Animation Clip!", MessageType.Error);
+            // }
 
             EditorGUILayout.PropertyField(_cardLoseEffect, new GUIContent("Card Lose Effect"));
             if (_cardLoseEffect == null)
@@ -239,17 +239,17 @@ public class CardDataEditor : Editor
                 EditorGUILayout.HelpBox("Warrning: No card back texture specified. Please Input a Texture!", MessageType.Error);
             }
 
-            EditorGUILayout.PropertyField(_cardFrontFlipAnimation, new GUIContent("Card flip to front Animation"));
-            if (_cardFrontFlipAnimation == null)
-            {
-                EditorGUILayout.HelpBox("Warrning: No card flip to front animation specified. Please Input an Animation Clip!", MessageType.Error);
-            }
+            // EditorGUILayout.PropertyField(_cardFrontFlipAnimation, new GUIContent("Card flip to front Animation"));
+            // if (_cardFrontFlipAnimation == null)
+            // {
+             //    EditorGUILayout.HelpBox("Warrning: No card flip to front animation specified. Please Input an Animation Clip!", MessageType.Error);
+            // }
 
-            EditorGUILayout.PropertyField(_cardBackFlipAnimation, new GUIContent("Card flip to back Animation"));
-            if (_cardBackFlipAnimation == null)
-            {
-                EditorGUILayout.HelpBox("Warrning: No card flip to back animation specified. Please Input an Animation Clip!", MessageType.Error);
-            }
+            // EditorGUILayout.PropertyField(_cardBackFlipAnimation, new GUIContent("Card flip to back Animation"));
+            // if (_cardBackFlipAnimation == null)
+            // {
+            //     EditorGUILayout.HelpBox("Warrning: No card flip to back animation specified. Please Input an Animation Clip!", MessageType.Error);
+           // }
 
             EditorGUI.indentLevel--;
             EditorGUILayout.Space();

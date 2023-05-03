@@ -56,6 +56,8 @@ public class Card : MonoBehaviour
                 Debug.Log(gameObject);
                 _faceToggle = false;
             }
+            AudioSource newSound = Instantiate(Data.CardFlipSound.GetComponent<AudioSource>(), transform.position, Quaternion.identity);
+            Destroy(newSound.gameObject, newSound.clip.length);
         }
     }
 
@@ -68,4 +70,38 @@ public class Card : MonoBehaviour
         FrontPlane.GetComponent<Renderer>().sharedMaterial.SetTexture("_BaseMap", Data.CardFront);
         BackPlane.GetComponent<Renderer>().sharedMaterial.SetTexture("_BaseMap", Data.CardBack);
     }
+
+    public void CardWinEffects()
+    {
+        if (Data.CardType == CardType.Monster)
+        {
+            Debug.Log("Win effects playing");
+            AudioSource newSound = Instantiate(Data.CardWinSound.GetComponent<AudioSource>(), transform.position, Quaternion.identity);
+            Destroy(newSound.gameObject, newSound.clip.length);
+            Instantiate(Data.CardWinEffect, gameObject.transform.position, Quaternion.identity);
+        }
+    }
+
+    public void CardLoseEffects()
+    {
+        if(Data.CardType == CardType.Monster)
+        {
+            Debug.Log("Lose effects playing");
+            AudioSource newSound = Instantiate(Data.CardLoseSound.GetComponent<AudioSource>(), transform.position, Quaternion.identity);
+            Destroy(newSound.gameObject, newSound.clip.length);
+            Instantiate(Data.CardLossEffect, gameObject.transform.position, Quaternion.identity);
+        }
+    }
+
+    public void Destroycard()
+    {
+        Debug.Log("Card Dystroyed");
+        Destroy(gameObject);
+    }
+
+    public CardData getCardData()
+    {
+        return Data;
+    }
+
 }

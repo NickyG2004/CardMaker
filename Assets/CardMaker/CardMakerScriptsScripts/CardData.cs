@@ -17,8 +17,8 @@ public class CardData : ScriptableObject
     [Separator(2)]
     [SerializeField][Tooltip("Texture Will Be displayed on the front of the card.")] private Texture _cardFront = null;
     [SerializeField][Tooltip("Texture Will Be displayed on the back of the card.")] private Texture _cardBack = null;
-    [SerializeField][Tooltip("Animation Clip that plays when the card flips to front.")] private AnimationClip _cardFrontFlipAnimation = null;
-    [SerializeField][Tooltip("Animation Clip that plays when the card flips to back.")] private AnimationClip _cardBackFlipAnimation = null;
+    //[SerializeField][Tooltip("Animation Clip that plays when the card flips to front.")] private AnimationClip _cardFrontFlipAnimation = null;
+    //[SerializeField][Tooltip("Animation Clip that plays when the card flips to back.")] private AnimationClip _cardBackFlipAnimation = null;
     [SerializeField][Tooltip("Particals that the card produces upon a loss.")] private GameObject _cardLoseEffect = null;
     [SerializeField][Tooltip("Particals that the card produces upon a win.")] private GameObject _cardWinEffect = null;
 
@@ -45,8 +45,8 @@ public class CardData : ScriptableObject
     public CardAttribute CardAttribute => _cardAttribute;
     public Texture CardFront => _cardFront;
     public Texture CardBack => _cardBack;
-    public AnimationClip CardFrontFlipAnimation => _cardFrontFlipAnimation;
-    public AnimationClip CardBackFlipAnimation => _cardBackFlipAnimation;
+    //public AnimationClip CardFrontFlipAnimation => _cardFrontFlipAnimation;
+    //public AnimationClip CardBackFlipAnimation => _cardBackFlipAnimation;
     public GameObject CardLossEffect => _cardLoseEffect;
     public GameObject CardWinEffect => _cardWinEffect;
     public GameObject CardFlipSound => _cardFlipSound;
@@ -68,8 +68,8 @@ public class CardData : ScriptableObject
         {
             _cardFront = (Texture)Resources.Load("CheckerPattern");
             _cardBack = (Texture)Resources.Load("DefaultCardBack");
-            _cardFrontFlipAnimation = (AnimationClip)Resources.Load("DefaultCardFrontFlip");
-            _cardBackFlipAnimation = (AnimationClip)Resources.Load("DefaultCardBackFlip");
+            //_cardFrontFlipAnimation = (AnimationClip)Resources.Load("DefaultCardFrontFlip");
+            //_cardBackFlipAnimation = (AnimationClip)Resources.Load("DefaultCardBackFlip");
             _cardLoseEffect = (GameObject)Resources.Load("VFX_CardLossEffect");
             _cardWinEffect = (GameObject)Resources.Load("VFX_CardWinEffect");
             _cardFlipSound = (GameObject)Resources.Load("SFX_CardFlipSound");
