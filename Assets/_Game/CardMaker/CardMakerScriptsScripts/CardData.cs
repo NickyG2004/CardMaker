@@ -60,20 +60,27 @@ public class CardData : ScriptableObject
     public bool IsNegitive => _isNegitive;
     public int ModValue => _modValue;
 
+    private bool _isLoaded = false;
+
     private void OnEnable()
     {
-        //Debug.Log("Somthing");
-        _cardFront = (Texture)Resources.Load("CheckerPattern");
-        _cardBack = (Texture)Resources.Load("DefaultCardBack");
-        _cardFrontFlipAnimation = (AnimationClip)Resources.Load("DefaultCardFrontFlip");
-        _cardBackFlipAnimation = (AnimationClip)Resources.Load("DefaultCardBackFlip");
-        _cardLoseEffect = (GameObject)Resources.Load("VFX_CardLossEffect");
-        _cardWinEffect = (GameObject)Resources.Load("VFX_CardWinEffect");
-        _cardFlipSound = (GameObject)Resources.Load("SFX_CardFlipSound");
-        _cardWinSound = (GameObject)Resources.Load("SFX_CardWinSound");
-        _cardLoseSound = (GameObject)Resources.Load("SFX_CardLossSound");
-        Debug.Log(_cardLoseEffect);
-        Debug.Log(_cardWinEffect);
+        if (_isLoaded == false)
+        {
+            _cardFront = (Texture)Resources.Load("CheckerPattern");
+            _cardBack = (Texture)Resources.Load("DefaultCardBack");
+            _cardFrontFlipAnimation = (AnimationClip)Resources.Load("DefaultCardFrontFlip");
+            _cardBackFlipAnimation = (AnimationClip)Resources.Load("DefaultCardBackFlip");
+            _cardLoseEffect = (GameObject)Resources.Load("VFX_CardLossEffect");
+            _cardWinEffect = (GameObject)Resources.Load("VFX_CardWinEffect");
+            _cardFlipSound = (GameObject)Resources.Load("SFX_CardFlipSound");
+            _cardWinSound = (GameObject)Resources.Load("SFX_CardWinSound");
+            _cardLoseSound = (GameObject)Resources.Load("SFX_CardLossSound");
+            _isLoaded = true;
+        }
 
+    }
+    private void OnValidate()
+    {
+        Debug.Log("Anthing");
     }
 }

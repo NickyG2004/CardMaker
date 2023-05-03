@@ -14,7 +14,11 @@ public class CardCreatorWindow : EditorWindow
 
     private void OnGUI()
     {
-
+        EditorGUILayout.LabelField("Card Object Creator", EditorStyles.boldLabel);
+        if (GUILayout.Button("Create a Card Object."))
+        {
+            Debug.Log("Clone Should be Made");
+        }
     }
 
 

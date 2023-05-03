@@ -15,7 +15,7 @@ MonoBehaviour:
   _cardName: Blue Eyes White Dragon
   _cardType: 1
   _cardAttribute: 5
-  _cardFront: {fileID: 2800000, guid: 21ea37a322def9643bf71545c9e55bbd, type: 3}
+  _cardFront: {fileID: 2800000, guid: 3bebe1b2329c7074a917b36649ffc6d1, type: 3}
   _cardBack: {fileID: 2800000, guid: de79086cb8efc904995aa0563c50d7f8, type: 3}
   _cardFrontFlipAnimation: {fileID: 7400000, guid: cb9544b4332ba564bbd4159851f7ddb2,
     type: 2}
@@ -31,9 +31,9 @@ MonoBehaviour:
     type: 3}
   _cardLoseSound: {fileID: 3310805097562507927, guid: e86de4e2269d4804b98b63f47550fe83,
     type: 3}
-  _attackPoints: 900
-  _defencePoints: 600
-  _level: 6
+  _attackPoints: 3600
+  _defencePoints: 1600
+  _level: 3
   _showStats: 1
   _isPositive: 1
   _isNegitive: 0
