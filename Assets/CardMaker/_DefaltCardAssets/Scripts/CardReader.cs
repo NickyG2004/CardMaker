@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,15 +8,15 @@ public class CardReader : MonoBehaviour
 {
     [SerializeField] GameObject _MonsterDisplay;
     [SerializeField] TextMeshProUGUI _cardNameDiplayMonster;
-    [SerializeField] TextMeshProUGUI _cardAttributeDisplay;
-    [SerializeField] TextMeshProUGUI _cardAttackPointDisplay;
-    [SerializeField] TextMeshProUGUI _cardDefencePointDisplay;
-    [SerializeField] TextMeshProUGUI _cardCardLevel;
+    [SerializeField] GameObject _cardAttributeDisplay;
+    [SerializeField] GameObject _cardAttackPointDisplay;
+    [SerializeField] GameObject _cardDefencePointDisplay;
+    [SerializeField] GameObject _cardCardLevel;
 
     [SerializeField] GameObject _ModifierDisplay;
-    [SerializeField] TextMeshProUGUI _cardNameDiplayModifire;
-    [SerializeField] TextMeshProUGUI _cardModDirectionDisplay;
-    [SerializeField] TextMeshProUGUI _cardModMagnitudeDispaly;
+    [SerializeField] GameObject _cardNameDiplayModifire;
+    [SerializeField] GameObject _cardModDirectionDisplay;
+    [SerializeField] GameObject _cardModMagnitudeDispaly;
 
     CardData CardInfo = null;
 
@@ -61,18 +60,18 @@ public class CardReader : MonoBehaviour
         if (Data.CardType == CardType.Monster)
         {
             _MonsterDisplay.SetActive(true);
-            _cardNameDiplayMonster.text = "Name: " + Data.Name;
-            _cardAttributeDisplay.text = "Attribute: " + getAttribute((int)Data.CardAttribute);
-            _cardAttackPointDisplay.text = "Attack Points: " + Data.AttackPoints.ToString();
-            _cardDefencePointDisplay.text = "Defence Points: " + Data.DefencePoints.ToString();
-            _cardCardLevel.text = "Level: " + Data.Level.ToString();
+            Debug.Log(Data.Name);
+            string name = Data.Name;
+            _cardNameDiplayMonster.text = name;
+            Debug.Log(getAttribute((int)Data.CardAttribute));
+            //_cardAttributeDisplay.GetComponent<TextMeshPro>().text = getAttribute((int)Data.CardAttribute);
+
+
+
         }
         else if (Data.CardType == CardType.Modifier)
         {
             _ModifierDisplay.SetActive(true);
-            _cardNameDiplayModifire.text = "Name: " + Data.Name;
-            _cardModDirectionDisplay.text = "Modifire Direction: " + modifireDirection(Data.IsNegitive, Data.IsPositive);
-            _cardModMagnitudeDispaly.text = "Modifire Magnitude " + Data.ModValue.ToString();
         }
     }
 
@@ -105,24 +104,5 @@ public class CardReader : MonoBehaviour
                 break;
         }
         return AttributeName;
-    }
-
-    private string modifireDirection(bool debuff, bool buff)
-    {
-        string temp = "";
-        if (debuff == true)
-        {
-            temp = "Debuff";
-        }
-        else if(buff == true)
-        {
-            temp = "Buff";
-        }
-        else
-        {
-            temp = "Undecided";
-        }
-
-        return temp;
     }
 }
