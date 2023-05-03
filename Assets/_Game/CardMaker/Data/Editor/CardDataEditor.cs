@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine.UIElements;
 using log4net.Core;
 using UnityEditor.Rendering;
+using System.Diagnostics;
 
 [CustomEditor(typeof(CardData))]
 
@@ -212,8 +213,8 @@ public class CardDataEditor : Editor
                 EditorGUILayout.LabelField("CARD STATS: ", EditorStyles.boldLabel);
                 EditorGUI.indentLevel++;
                 EditorGUILayout.LabelField("Card Name: " + _cardName.stringValue, EditorStyles.whiteLabel);
-                EditorGUILayout.LabelField("Card Type: " + _cardType, EditorStyles.whiteLabel);
-                EditorGUILayout.LabelField("Card Attribute: " + _cardAttribute, EditorStyles.whiteLabel);
+                EditorGUILayout.LabelField("Card Type: " + getCardType(_cardType.intValue), EditorStyles.whiteLabel);
+                EditorGUILayout.LabelField("Card Attribute: " + getAttribute(_cardAttribute.intValue), EditorStyles.whiteLabel);
                 EditorGUILayout.LabelField("Attack Points: " + _attackPoints.intValue, EditorStyles.whiteLabel);
                 EditorGUILayout.LabelField("Defence Points: " + _defencePoints.intValue, EditorStyles.whiteLabel);
                 EditorGUILayout.LabelField("Level: " + _level.intValue, EditorStyles.whiteLabel);
@@ -286,6 +287,10 @@ public class CardDataEditor : Editor
 
             EditorGUIUtility.labelWidth = 0;
             EditorGUILayout.PropertyField(_modValue, new GUIContent("Modifier Magnitude"));
+            if (_modValue.intValue % 100 != 0)
+            {
+                _modValue.intValue = RoundValue(_modValue.intValue);
+            }
             if (GUILayout.Button("Random Mod Magnitude"))
             {
                 RandomizeMod();
@@ -300,6 +305,26 @@ public class CardDataEditor : Editor
             }
 
             EditorGUI.indentLevel--;
+
+            EditorGUI.indentLevel--;
+            EditorGUILayout.Space();
+            EditorGUIUtility.labelWidth = 70;
+            EditorGUILayout.PropertyField(_showStats, new GUIContent("Show Stats"));
+
+            // Add after.
+            if (_showStats.boolValue == true)
+            {
+
+                EditorGUILayout.Space(20);
+                EditorGUILayout.LabelField("CARD STATS: ", EditorStyles.boldLabel);
+                EditorGUI.indentLevel++;
+                EditorGUILayout.LabelField("Card Name: " + _cardName.stringValue, EditorStyles.whiteLabel);
+                EditorGUILayout.LabelField("Card Type: " + getCardType(_cardType.intValue), EditorStyles.whiteLabel);
+                EditorGUILayout.LabelField("Modifire Direction: " + getModType(_isPositive.boolValue, _isNegitive.boolValue), EditorStyles.whiteLabel);
+                EditorGUILayout.LabelField("Modifire Magnitude: " + _modValue.intValue, EditorStyles.whiteLabel);
+                EditorGUI.indentLevel--;
+                
+            }
         }
 
         serializedObject.ApplyModifiedProperties();
@@ -327,5 +352,73 @@ public class CardDataEditor : Editor
         value /= 100;
         value *= 100;
         return value;
+    }
+    string getAttribute(int value)
+    {
+        string AttributeName = "";
+
+        switch (value)
+        {
+            case 1:
+                AttributeName = "Air";
+                break;
+            case 2:
+                AttributeName = "Earth";
+                break;
+            case 3:
+                AttributeName = "Fire";
+                break;
+            case 4:
+                AttributeName = "Water";
+                break;
+            case 5:
+                AttributeName = "Light";
+                break;
+            case 6:
+                AttributeName = "Dark";
+                break;
+            default:
+                AttributeName = "None";
+                break;
+        }
+        return AttributeName;
+    }
+    string getCardType(int value)
+    {
+        string cardType = "";
+
+        switch (value)
+        {
+            case 1:
+                cardType = "Monster";
+                break;
+            case 2:
+                cardType = "Modifier";
+                break;
+            default:
+                cardType = "None";
+                break;
+        }
+        return cardType;
+    }
+
+    string getModType(bool buff, bool debuff)
+    {
+        string modType = "";
+
+        if(buff == true)
+        {
+            modType = "Buff";
+        }
+        else if(debuff == true) 
+        {
+            modType = "DeBuff";
+        }
+        else
+        {
+            modType = "Undecided";
+        }
+
+        return modType;
     }
 }

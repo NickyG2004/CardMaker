@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "CardData_", menuName = "CardData/Monster")]
+[CreateAssetMenu(fileName = "CardData_", menuName = "CardData/DataObject")]
 
 public class CardData : ScriptableObject
 {
@@ -15,17 +15,17 @@ public class CardData : ScriptableObject
     [SerializeField][Tooltip("Sets the attribute of the card.")] private CardAttribute _cardAttribute = CardAttribute.None;
 
     [Separator(2)]
-    [SerializeField][Tooltip("Sprite Will Be displayed on the front of the card.")] private Texture _cardFront = null;
-    [SerializeField][Tooltip("Sprite Will Be displayed on the back of the card.")] private Texture  _cardBack = null;
-    [SerializeField][Tooltip("Animation that plays when the card flips to front.")] private AnimationClip _cardFrontFlipAnimation = null;
-    [SerializeField][Tooltip("Animation that plays when the card flips to back.")] private AnimationClip _cardBackFlipAnimation = null;
-    [SerializeField][Tooltip("Particals that the card produces upon a loss.")] private ParticleSystem _cardLoseEffect = null;
-    [SerializeField][Tooltip("Particals that the card produces upon a win.")] private ParticleSystem _cardWinEffect = null;
+    [SerializeField][Tooltip("Texture Will Be displayed on the front of the card.")] private Texture _cardFront = null;
+    [SerializeField][Tooltip("Texture Will Be displayed on the back of the card.")] private Texture  _cardBack = null;
+    [SerializeField][Tooltip("Animation Clip that plays when the card flips to front.")] private AnimationClip _cardFrontFlipAnimation = null;
+    [SerializeField][Tooltip("Animation Clip that plays when the card flips to back.")] private AnimationClip _cardBackFlipAnimation = null;
+    [SerializeField][Tooltip("Particals that the card produces upon a loss.")] private GameObject _cardLoseEffect = null;
+    [SerializeField][Tooltip("Particals that the card produces upon a win.")] private GameObject _cardWinEffect = null;
 
     [Separator(2)]
-    [SerializeField][Tooltip("Sound that plays when the card flips.")] private AudioSource _cardFlipSound = null;
-    [SerializeField][Tooltip("Sound that plays upon a card win.")] private AudioSource _cardWinSound = null;
-    [SerializeField][Tooltip("Sound that plays upon a card loss.")] private AudioSource _cardLoseSound = null;
+    [SerializeField][Tooltip("Sound that plays when the card flips.")] private GameObject _cardFlipSound = null;
+    [SerializeField][Tooltip("Sound that plays upon a card win.")] private GameObject _cardWinSound = null;
+    [SerializeField][Tooltip("Sound that plays upon a card loss.")] private GameObject _cardLoseSound = null;
 
     [Separator(2)]
     [SerializeField][Tooltip("How much damage a card can deal.")] private int _attackPoints = 500;
@@ -36,9 +36,9 @@ public class CardData : ScriptableObject
     [SerializeField][Tooltip("When Checked will display card stats.")] private bool _showStats = true;
 
     [Separator(2)]
-    [SerializeField][Tooltip("")] private bool _isPositive = true;
-    [SerializeField][Tooltip("")] private bool _isNegitive = false;
-    [SerializeField][Tooltip("")] private int _modValue = 500;
+    [SerializeField][Tooltip("Makes the modifire card Buff Attack and Defence stats.")] private bool _isPositive = true;
+    [SerializeField][Tooltip("Makes the modifire card Debuff Attack and Defence stats.")] private bool _isNegitive = false;
+    [SerializeField][Tooltip("Amount the cards will be Buffed or Debuffed.")] private int _modValue = 500;
 
     public string Name => _cardName;
     public CardType CardType => _cardType;
@@ -47,11 +47,11 @@ public class CardData : ScriptableObject
     public Texture CardBack => _cardBack;
     public AnimationClip CardFrontFlipAnimation => _cardFrontFlipAnimation;
     public AnimationClip CardBackFlipAnimation => _cardBackFlipAnimation;
-    public ParticleSystem CardLossEffect => _cardLoseEffect;
-    public ParticleSystem CardWinEffect => _cardWinEffect;
-    public AudioSource CardFlipSound => _cardFlipSound;
-    public AudioSource CardWinSound => _cardWinSound;
-    public AudioSource CardLoseSound => _cardLoseSound;
+    public GameObject CardLossEffect => _cardLoseEffect;
+    public GameObject CardWinEffect => _cardWinEffect;
+    public GameObject CardFlipSound => _cardFlipSound;
+    public GameObject CardWinSound => _cardWinSound;
+    public GameObject CardLoseSound => _cardLoseSound;
     public int AttackPoints => _attackPoints;
     public int DefencePoints => _defencePoints;
     public int Level => _level;
@@ -59,4 +59,21 @@ public class CardData : ScriptableObject
     public bool IsPositive => _isPositive;
     public bool IsNegitive => _isNegitive;
     public int ModValue => _modValue;
+
+    private void OnEnable()
+    {
+        //Debug.Log("Somthing");
+        _cardFront = (Texture)Resources.Load("CheckerPattern");
+        _cardBack = (Texture)Resources.Load("DefaultCardBack");
+        _cardFrontFlipAnimation = (AnimationClip)Resources.Load("DefaultCardFrontFlip");
+        _cardBackFlipAnimation = (AnimationClip)Resources.Load("DefaultCardBackFlip");
+        _cardLoseEffect = (GameObject)Resources.Load("VFX_CardLossEffect");
+        _cardWinEffect = (GameObject)Resources.Load("VFX_CardWinEffect");
+        _cardFlipSound = (GameObject)Resources.Load("SFX_CardFlipSound");
+        _cardWinSound = (GameObject)Resources.Load("SFX_CardWinSound");
+        _cardLoseSound = (GameObject)Resources.Load("SFX_CardLossSound");
+        Debug.Log(_cardLoseEffect);
+        Debug.Log(_cardWinEffect);
+
+    }
 }
