@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 332fe90532cb4414caa6357344b6b13b, type: 3}
-  m_Name: CardData_BlueEyesWhiteDragon
+  m_Name: CardData_Attackcard
   m_EditorClassIdentifier: 
-  _cardName: Blue Eyes White Dragon
-  _cardType: 1
-  _cardAttribute: 5
-  _cardFront: {fileID: 2800000, guid: 39529a83b041f294e9ae5259cfdd28aa, type: 3}
+  _cardName: Chain
+  _cardType: 2
+  _cardAttribute: 0
+  _cardFront: {fileID: 2800000, guid: 3bebe1b2329c7074a917b36649ffc6d1, type: 3}
   _cardBack: {fileID: 2800000, guid: de79086cb8efc904995aa0563c50d7f8, type: 3}
   _cardLoseEffect: {fileID: 7610590023413157853, guid: f5fa708914c57eb49969f49bb55c1516,
     type: 3}
@@ -27,9 +27,9 @@ MonoBehaviour:
     type: 3}
   _cardLoseSound: {fileID: 3310805097562507927, guid: e86de4e2269d4804b98b63f47550fe83,
     type: 3}
-  _attackPoints: 3000
-  _defencePoints: 2500
-  _level: 7
+  _attackPoints: 500
+  _defencePoints: 500
+  _level: 1
   _showStats: 1
   _isPositive: 1
   _isNegitive: 0
