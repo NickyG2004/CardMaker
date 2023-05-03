@@ -16,7 +16,7 @@ public class CardData : ScriptableObject
 
     [Separator(2)]
     [SerializeField][Tooltip("Texture Will Be displayed on the front of the card.")] private Texture _cardFront = null;
-    [SerializeField][Tooltip("Texture Will Be displayed on the back of the card.")] private Texture  _cardBack = null;
+    [SerializeField][Tooltip("Texture Will Be displayed on the back of the card.")] private Texture _cardBack = null;
     [SerializeField][Tooltip("Animation Clip that plays when the card flips to front.")] private AnimationClip _cardFrontFlipAnimation = null;
     [SerializeField][Tooltip("Animation Clip that plays when the card flips to back.")] private AnimationClip _cardBackFlipAnimation = null;
     [SerializeField][Tooltip("Particals that the card produces upon a loss.")] private GameObject _cardLoseEffect = null;
@@ -30,7 +30,7 @@ public class CardData : ScriptableObject
     [Separator(2)]
     [SerializeField][Tooltip("How much damage a card can deal.")] private int _attackPoints = 500;
     [SerializeField][Tooltip("How much damage a card can take.")] private int _defencePoints = 500;
-    [SerializeField][Tooltip("The level of a card.")][Range(1,10)] private int _level = 1;
+    [SerializeField][Tooltip("The level of a card.")][Range(1, 10)] private int _level = 1;
 
     [Separator(2)]
     [SerializeField][Tooltip("When Checked will display card stats.")] private bool _showStats = true;
@@ -79,8 +79,28 @@ public class CardData : ScriptableObject
         }
 
     }
+
+    public List<GameObject> cards = new List<GameObject>();
     private void OnValidate()
     {
-        Debug.Log("Anthing");
+        Debug.Log(cards.Count);
+        if (cards != null)
+        {
+            for (int i = 0; i < cards.Count; i++)
+            {
+                if (cards[i] != null)
+                {
+                    cards[i].GetComponent<Card>().onChange();
+                }
+                else
+                {
+                    cards.RemoveAt(i);
+                    i--;
+                }
+                Debug.Log(cards.Count);
+            }
+        }
     }
+
+ 
 }
