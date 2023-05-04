@@ -65,10 +65,10 @@ public class Card : MonoBehaviour
     public void onChange()
     {
         Debug.Log("hello");
-        GameObject FrontPlane = gameObject.transform.Find("VisualsFront").gameObject;
+        //GameObject FrontPlane = gameObject.transform.Find("VisualsFront").gameObject;
         GameObject BackPlane = gameObject.transform.Find("VisualsBack").gameObject;
 
-        FrontPlane.GetComponent<Renderer>().material.SetTexture("_BaseMap", Data.CardFront);
+        //FrontPlane.GetComponent<Renderer>().material.SetTexture("_BaseMap", Data.CardFront);
         BackPlane.GetComponent<Renderer>().material.SetTexture("_BaseMap", Data.CardBack);
     }
 
