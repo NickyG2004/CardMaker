@@ -66,7 +66,7 @@ public class CardData : ScriptableObject
     {
         if (_isLoaded == false)
         {
-            //_cardFront = (Texture)Resources.Load("CheckerPattern");
+            _cardFront = (Texture)Resources.Load("CheckerPattern");
             _cardBack = (Texture)Resources.Load("DefaultCardBack");
             //_cardFrontFlipAnimation = (AnimationClip)Resources.Load("DefaultCardFrontFlip");
             //_cardBackFlipAnimation = (AnimationClip)Resources.Load("DefaultCardBackFlip");
