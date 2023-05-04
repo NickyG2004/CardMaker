@@ -14,14 +14,14 @@ public class Card : MonoBehaviour
 
     public CardData Data => _data;
 
-    private bool _faceToggle = false;
+    private bool _faceToggle = true;
 
     Quaternion _rotation;
 
 
     void OnValidate()
     {
-        Debug.Log(Data.cards.Count);
+        // Debug.Log(Data.cards.Count);
         onChange();
         if(!Data.cards.Contains(gameObject))
         {
@@ -61,14 +61,15 @@ public class Card : MonoBehaviour
         }
     }
 
+
     public void onChange()
     {
         Debug.Log("hello");
         GameObject FrontPlane = gameObject.transform.Find("VisualsFront").gameObject;
         GameObject BackPlane = gameObject.transform.Find("VisualsBack").gameObject;
 
-        FrontPlane.GetComponent<Renderer>().sharedMaterial.SetTexture("_BaseMap", Data.CardFront);
-        BackPlane.GetComponent<Renderer>().sharedMaterial.SetTexture("_BaseMap", Data.CardBack);
+        FrontPlane.GetComponent<Renderer>().material.SetTexture("_BaseMap", Data.CardFront);
+        BackPlane.GetComponent<Renderer>().material.SetTexture("_BaseMap", Data.CardBack);
     }
 
     public void CardWinEffects()
